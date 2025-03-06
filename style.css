@@ -28,7 +28,10 @@ nav a {
   align-items: center;
   justify-content: center;
 }
-
+body a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
 .head{
   background: #260000;
   width: auto;
