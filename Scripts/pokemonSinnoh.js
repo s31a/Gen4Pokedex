@@ -1,5 +1,5 @@
 async function fetchPokemonData() {
-    const response = await fetch('./PokeInfo/info.json');
+    const response = await fetch('./PokeInfo/sDex.json');
     const data = response.json();
     console.log(data)
     return data;
@@ -8,7 +8,7 @@ async function fetchPokemonData() {
 async function displayPokemon(start, end) {
     let pokedex = await document.getElementById("pokedex");
     const pokemonData = await fetchPokemonData();
-    
+
     // Used to load pokemon
     let caughtPokemon = JSON.parse(localStorage.getItem("caughtPokemon")) || {};
 
@@ -26,13 +26,13 @@ async function displayPokemon(start, end) {
             let pokeName = document.createElement("name");
             let pokeID = document.createElement("ID");
             
-            let pokemon = pokemonData.find(p => parseInt(p.id) == j);
+            let pokemon = pokemonData.find(p => parseInt(p.SID) == j);
             
-            pokeImg.src = `./Sprites/${pokemon.id}.png`;
-            pokeName.textContent = pokemon.name;
-            pokeID.textContent = "#" + pokemon.id;
+            pokeImg.src = `./Sprites/${pokemon.ID}.png`;
+            pokeName.textContent = pokemon.NAME;
+            pokeID.textContent = "#" + pokemon.SID;
             
-            if (caughtPokemon[pokemon.id]) {
+            if (caughtPokemon[pokemon.ID]) {
                 pokeCard.classList.add("Caught");
             }
 
@@ -40,9 +40,9 @@ async function displayPokemon(start, end) {
                 pokeCard.classList.toggle("Caught");
 
                 if (pokeCard.classList.contains("Caught")) {
-                    caughtPokemon[pokemon.id] = true;
+                    caughtPokemon[pokemon.ID] = true;
                 } else {
-                    delete caughtPokemon[pokemon.id];
+                    delete caughtPokemon[pokemon.ID];
                 }
             
                 localStorage.setItem("caughtPokemon", JSON.stringify(caughtPokemon));
@@ -57,4 +57,4 @@ async function displayPokemon(start, end) {
     }
 }
 
-displayPokemon(1, 492);
+displayPokemon(1, 210);
