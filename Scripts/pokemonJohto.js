@@ -29,7 +29,7 @@ async function displayPokemon(start, end) {
             let pokemon = pokemonData.find(p => parseInt(p.JID) == j);
             
             pokeImg.src = `./Sprites/${pokemon.ID}.png`;
-            pokeName.textContent = pokemon.NAME;
+            pokeName.textContent = pokemon.Name;
             pokeID.textContent = "#" + pokemon.JID;
             
             if (caughtPokemon[pokemon.ID]) {
